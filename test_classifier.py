@@ -8,3 +8,7 @@ def test_words_in_a_folder():
 
 def test_possible_words:
     assert classifier.possible_words(['hello', 'hi', 'good']) == 3 
+
+def test_probability_word():
+    word = 'a'
+    assert classifier.probability_word(['a', 'b', 'd', 'a']) == 2/4
