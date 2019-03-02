@@ -13,4 +13,18 @@ def words_in_a_folder(path):
     files_cont = re.sub(r'[^\w\s]','',files_cont)
     cont_list = files_cont.split()
     cont_list.sort()
+    cont_list = [x.lower() for x in cont_list]
     return cont_list
+
+def possible_words():
+    Dir_of_data = '/home/fairoos/naive_byaes/training_data/'
+    list_words = []
+    for dir in os.listdir(Dir_of_data):
+        path = (f"/home/fairoos/naive_byaes/training_data/{dir}")
+        list_words.extend(words_in_a_folder(path))
+        list_words = list(dict.fromkeys(list_words)) 
+    count = len(list_words)
+    return count
+
+
+    
