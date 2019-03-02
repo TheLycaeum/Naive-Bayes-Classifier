@@ -1,4 +1,5 @@
-import os 
+import os
+import re
 
 
 def words_in_a_folder(path):
@@ -9,6 +10,8 @@ def words_in_a_folder(path):
         fil = open(file_path)
         content = fil.read()
         files_cont += content
+    files_cont = re.sub(r'[^\w\s]','',files_cont)
     cont_list = files_cont.split()
+    cont_list.sort()
     return cont_list
-
+print(words_in_a_folder('/home/fairoos/naive_byaes/sports'))
