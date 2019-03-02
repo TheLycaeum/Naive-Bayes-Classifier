@@ -14,4 +14,3 @@ def words_in_a_folder(path):
     cont_list = files_cont.split()
     cont_list.sort()
     return cont_list
-print(words_in_a_folder('/home/fairoos/naive_byaes/sports'))
