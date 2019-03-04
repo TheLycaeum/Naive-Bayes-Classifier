@@ -9,4 +9,4 @@ def downlod_lyrics(url):
     lyrics = " "
     for i in data.select('.verse'):
         lyrics += i.text
-    return  lyrics
+    return print( lyrics)
