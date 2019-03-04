@@ -1,7 +1,6 @@
 import os
 import re
 
-
 def words_in_a_folder(path):
     """Total number of words in a folder"""
     files_cont = ''
@@ -28,6 +27,7 @@ def possible_words():
     return count
 
 def count_files():
+    """coun files in a directory"""
     count = 0
     for dir in os.listdir('/home/fairoos/naive_byaes/training_data'):
         count += len(os.listdir(f"/home/fairoos/naive_byaes/training_data/{dir}"))
@@ -35,6 +35,7 @@ def count_files():
     
     
 def probability():
+    """ find the probability of testing data up on trained data"""
     path = '/home/fairoos/naive_byaes/testing_data'
     for filename in os.listdir(path):
         print(filename)
@@ -50,7 +51,6 @@ def probability():
         for dir in os.listdir(Dir_of_data):
             print(dir)
             words =  words_in_a_folder(f'/home/fairoos/naive_byaes/training_data/{dir}')
-            
             b =[]
             for element in cont_list:
                 count = 0
@@ -59,7 +59,6 @@ def probability():
                         count += 1
                 b.append(count)
             c = []
-            
             for count in b:
                 p_a_word = ((count + 1)/(len(words) + possible_words()))
                 c.append(p_a_word)
@@ -73,21 +72,30 @@ def probability():
             pro = format(float(total_porbability), '.20f')
             x.update({dir:total_porbability})
             print(pro)
-        print(x)
-        smallestKey = max([[x[key],key] for key in x])[1]
-        print("Highest probability: ",smallestKey)
-        print(x.get(smallestKey))
-        key_list = list()
-        value_list = list()
-        for i in x.keys():
-            key_list.append(i)
-        print(key_list)
-        for j in x.values():
-            value_list.append(j)
-        print(value_list)
-       
-            
+        return x
+    
+def perc_calculator():
+    """percentage calculator"""
+    x = probability()
+    key_list = list()
+    value_list = list()
+    for i in x.keys():
+        key_list.append(i)
+    print(key_list)
+    for j in x.values():
+        value_list.append(j)
+    print(value_list)
+    sum_list = sum(value_list)
+    perc_list = list()
+    for i in value_list:
+        percentage = (i/sum_list) * 100
+        perc_list.append(percentage)
+    print(perc_list)
+    for key, perc in zip(key_list, perc_list):
+        print(f"{key} =  {perc} %.")
         
+perc_calculator()
+                
         
                 
-probability()
+
