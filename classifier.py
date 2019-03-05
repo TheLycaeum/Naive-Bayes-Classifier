@@ -1,6 +1,8 @@
 import os
 import re
 import nltk
+import nltk
+#nltk.download('wordnet')
 #nltk.download('stopwords')
 
 
@@ -16,6 +18,7 @@ def words_in_a_folder(path):
     cont_list = files_cont.split()
     cont_list.sort()
     cont_list = [x.lower() for x in cont_list] #to lower case all words
+    cont_list = lammatize(cont_list)
     cont_list = stop_word(cont_list)
     return cont_list
 
@@ -48,6 +51,64 @@ def stop_word(input_words):
         if word not in en_stops:
             words.append(word)    
     return words
+
+
+def lammatize(word_list):
+    from nltk.stem import WordNetLemmatizer
+    lemmatizer = WordNetLemmatizer()
+    lemmatized_output = [lemmatizer.lemmatize(w) for w in word_list]
+    return lemmatized_output
+
+def name(cont_list):
+    Dir_of_data = '/home/fairoos/naive_byaes/training_data/'
+    x = {}
+    for dir in os.listdir(Dir_of_data):
+        #print(dir)
+        words =  words_in_a_folder(f'/home/fairoos/naive_byaes/training_data/{dir}')
+        b =[]
+        for element in cont_list:
+            count = 0
+            for word in words:
+                if element == word:
+                    count += 1
+            b.append(count)
+        c = []
+        for count in b:
+            p_a_word = ((count + 1)/(len(words) + possible_words()))
+            c.append(p_a_word)
+        probability = 1
+        for d in c:
+            probability1 = probability * d
+            total_files = count_files()
+            file_me = len(os.listdir(f'/home/fairoos/naive_byaes/training_data/{dir}'))
+            prob_me = file_me / total_files
+            total_porbability = probability1 * prob_me
+            pro = format(float(total_porbability), '.20f')
+            x.update({dir:total_porbability})
+    return x
+
+def percent_calculator(x):
+    key_list = list()
+    value_list = list()
+    for i in x.keys():
+        key_list.append(i)
+        
+    for j in x.values():
+        value_list.append(j)
+        
+    sum_list = sum(value_list)
+    perc_list = list()
+    for i in value_list:
+        try:
+            percentage = (i/sum_list) * 100
+            perc_list.append(percentage)
+        except ZeroDivisionError:
+            percentage = 0
+        
+    for key, perc in zip(key_list, perc_list):
+        print(f"{key} =  {perc} %.")
+        print()
+   
     
     
 def probability():
@@ -63,55 +124,11 @@ def probability():
         cont_list = files_cont.split()
         cont_list.sort()
         cont_list = [x.lower() for x in cont_list] #to lower case all words
+        cont_list = lammatize(cont_list)
         cont_list = list( dict.fromkeys(cont_list)) #remove repeted words
         cont_list = stop_word(cont_list)
-        Dir_of_data = '/home/fairoos/naive_byaes/training_data/'
-        x = {}
-        for dir in os.listdir(Dir_of_data):
-            #print(dir)
-            words =  words_in_a_folder(f'/home/fairoos/naive_byaes/training_data/{dir}')
-            b =[]
-            for element in cont_list:
-                count = 0
-                for word in words:
-                    if element == word:
-                        count += 1
-                b.append(count)
-            c = []
-            for count in b:
-                p_a_word = ((count + 1)/(len(words) + possible_words()))
-                c.append(p_a_word)
-            probability = 1
-            for d in c:
-                probability1 = probability * d
-            total_files = count_files()
-            file_me = len(os.listdir(f'/home/fairoos/naive_byaes/training_data/{dir}'))
-            prob_me = file_me / total_files
-            total_porbability = probability1 * prob_me
-            pro = format(float(total_porbability), '.20f')
-            x.update({dir:total_porbability})
-            #print(pro)
-    
-        key_list = list()
-        value_list = list()
-        for i in x.keys():
-            key_list.append(i)
-        
-        for j in x.values():
-            value_list.append(j)
-        
-        sum_list = sum(value_list)
-        perc_list = list()
-        for i in value_list:
-            try:
-                percentage = (i/sum_list) * 100
-                perc_list.append(percentage)
-            except ZeroDivisionError:
-                percentage = 0
-        
-        for key, perc in zip(key_list, perc_list):
-            print(f"{key} =  {perc} %.")
-            print()
+        x = name(cont_list)
+        percent_calculator(x)
         print("=== " * 34)
 probability()
         
