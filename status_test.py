@@ -1,13 +1,14 @@
 import classifier
 import os
+test_data = '/home/fairoos/naive_byaes/testing_data'
+train_data = '/home/fairoos/naive_byaes/training_data/'
 
 def name_file():
     file_name_list = []
-    path = '/home/fairoos/naive_byaes/testing_data'
-    for filename in os.listdir(path):
+    for filename in os.listdir(test_data):
         file_name_list.append(filename)
     return file_name_list
-dictr =  classifier.probability()
+dictr =  classifier.probability(test_data, train_data)
 def highest(dictr):
     #from classifier import probability
     global lenth
