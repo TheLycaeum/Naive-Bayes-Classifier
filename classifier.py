@@ -1,7 +1,6 @@
 import os
 import re
 import nltk
-import nltk
 #nltk.download('wordnet')
 #nltk.download('stopwords')
 
@@ -18,7 +17,7 @@ def words_in_a_folder(path):
     cont_list = files_cont.split()
     cont_list.sort()
     cont_list = [x.lower() for x in cont_list] #to lower case all words
-    cont_list = lammatize(cont_list)
+    #cont_list = lammatize(cont_list)
     cont_list = stop_word(cont_list)
     return cont_list
 
@@ -53,11 +52,11 @@ def stop_word(input_words):
     return words
 
 
-def lammatize(word_list):
-    from nltk.stem import WordNetLemmatizer
-    lemmatizer = WordNetLemmatizer()
-    lemmatized_output = [lemmatizer.lemmatize(w) for w in word_list]
-    return lemmatized_output
+# def lammatize(word_list):
+#     from nltk.stem import WordNetLemmatizer
+#     lemmatizer = WordNetLemmatizer()
+#     lemmatized_output = [lemmatizer.lemmatize(w) for w in word_list]
+#     return lemmatized_output
 
 def name(cont_list):
     Dir_of_data = '/home/fairoos/naive_byaes/training_data/'
@@ -104,16 +103,18 @@ def percent_calculator(x):
             perc_list.append(percentage)
         except ZeroDivisionError:
             percentage = 0
-        
+    perce = dict()
     for key, perc in zip(key_list, perc_list):
         print(f"{key} =  {perc} %.")
         print()
-   
+        perce.update({key:perc})
+    return perce
     
     
 def probability():
     """ find the probability of testing data up on trained data"""
     path = '/home/fairoos/naive_byaes/testing_data'
+    prob_list = list()
     for filename in os.listdir(path):
         print(filename)
         print()
@@ -124,13 +125,14 @@ def probability():
         cont_list = files_cont.split()
         cont_list.sort()
         cont_list = [x.lower() for x in cont_list] #to lower case all words
-        cont_list = lammatize(cont_list)
+        #cont_list = lammatize(cont_list)
         cont_list = list( dict.fromkeys(cont_list)) #remove repeted words
         cont_list = stop_word(cont_list)
         x = name(cont_list)
-        percent_calculator(x)
+        prob_list.append(percent_calculator(x))
         print("=== " * 34)
-probability()
+    return prob_list
+#probability()
         
                 
 
