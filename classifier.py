@@ -72,7 +72,7 @@ def probability_dict(cont_list, train_data):
             b.append(count)
         c = []
         for count in b:
-            p_a_word = ((count + 1)/(len(words) + possible_words()))
+            p_a_word = ((count + 1)/(len(words) + possible_words(train_data)))
             c.append(p_a_word)
         probability = 1
         for d in c:
@@ -126,7 +126,7 @@ def probability(test_data):
         #cont_list = lammatize(cont_list)
         cont_list = list( dict.fromkeys(cont_list)) #remove repeted words
         cont_list = stop_word(cont_list)
-        x = probability_dict(cont_list)
+        x = probability_dict(cont_list, train_data)
         prob_list.append(percent_calculator(x))
         print("=== " * 34)
     return prob_list
