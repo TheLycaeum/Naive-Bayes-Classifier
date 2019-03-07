@@ -4,6 +4,8 @@ import nltk
 #nltk.download('wordnet')
 #nltk.download('stopwords')
 
+train_data = '/home/fairoos/naive_byaes/training_data/'
+test_data = '/home/fairoos/naive_byaes/testing_data'
 
 def words_in_a_folder(path):
     """Total number of words in a folder"""
@@ -21,29 +23,27 @@ def words_in_a_folder(path):
     cont_list = stop_word(cont_list)
     return cont_list
 
-def possible_words(Dir_of_data = '/home/fairoos/naive_byaes/training_data/'):
+def possible_words(train_data):
     """to count all possible words in training data"""
-    #Dir_of_data = '/home/fairoos/naive_byaes/training_data/'
     list_words = []
-    for dir in os.listdir(Dir_of_data):
-        path = (f"{Dir_of_data}{dir}")
+    for dir in os.listdir(train_data):
+        path = (f"{train_data}{dir}")
         list_words.extend(words_in_a_folder(path)) # combain lists
         list_words = list(dict.fromkeys(list_words)) # rm duplicates from List:
         list_words = stop_word(list_words)
     count = len(list_words)
     return count
 
-def count_files(list_dir = os.listdir('/home/fairoos/naive_byaes/training_data')):
+def count_files(list_dir = os.listdir(train_data)):
     """coun files in a directory"""
     count = 0
     for dir in list_dir:
-        count += len(os.listdir(f"/home/fairoos/naive_byaes/training_data/{dir}"))
+        count += len(os.listdir(f"{train_data}{dir}"))
     return count
 
 def stop_word(input_words):
     from nltk.corpus import stopwords
     en_stops = set(stopwords.words('english'))
-
     all_words = input_words
     words = list()
     for word in all_words: 
@@ -58,12 +58,11 @@ def stop_word(input_words):
 #     lemmatized_output = [lemmatizer.lemmatize(w) for w in word_list]
 #     return lemmatized_output
 
-def probability_dict(cont_list, Dir_of_data = '/home/fairoos/naive_byaes/training_data/'):
-    #Dir_of_data = '/home/fairoos/naive_byaes/training_data/'
+def probability_dict(cont_list, train_data):
     x = {}
-    for dir in os.listdir(Dir_of_data):
+    for dir in os.listdir(train_data):
         #print(dir)
-        words =  words_in_a_folder(f'{Dir_of_data}{dir}')
+        words =  words_in_a_folder(f'{train_data}{dir}')
         b =[]
         for element in cont_list:
             count = 0
@@ -79,7 +78,7 @@ def probability_dict(cont_list, Dir_of_data = '/home/fairoos/naive_byaes/trainin
         for d in c:
             probability1 = probability * d
             total_files = count_files()
-            file_me = len(os.listdir(f'{Dir_of_data}{dir}'))
+            file_me = len(os.listdir(f'{train_data}{dir}'))
             prob_me = file_me / total_files
             total_porbability = probability1 * prob_me
             pro = format(float(total_porbability), '.20f')
@@ -111,13 +110,13 @@ def percent_calculator(x):
     return perce
     
     
-def probability(path = '/home/fairoos/naive_byaes/testing_data'):
+def probability(test_data):
     """ find the probability of testing data up on trained data"""
     prob_list = list()
-    for filename in os.listdir(path):
+    for filename in os.listdir(test_data):
         print(filename)
         print()
-        file_path = os.path.join(path, filename)
+        file_path = os.path.join(test_data, filename)
         fil = open(file_path)
         content = fil.read()
         files_cont = re.sub(r'[^\w\s]','',content) #remove punctuation !"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~
