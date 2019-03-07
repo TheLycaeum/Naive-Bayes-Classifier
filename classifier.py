@@ -58,12 +58,12 @@ def stop_word(input_words):
 #     lemmatized_output = [lemmatizer.lemmatize(w) for w in word_list]
 #     return lemmatized_output
 
-def probability_dict(cont_list):
-    Dir_of_data = '/home/fairoos/naive_byaes/training_data/'
+def probability_dict(cont_list, Dir_of_data = '/home/fairoos/naive_byaes/training_data/'):
+    #Dir_of_data = '/home/fairoos/naive_byaes/training_data/'
     x = {}
     for dir in os.listdir(Dir_of_data):
         #print(dir)
-        words =  words_in_a_folder(f'/home/fairoos/naive_byaes/training_data/{dir}')
+        words =  words_in_a_folder(f'{Dir_of_data}{dir}')
         b =[]
         for element in cont_list:
             count = 0
@@ -79,7 +79,7 @@ def probability_dict(cont_list):
         for d in c:
             probability1 = probability * d
             total_files = count_files()
-            file_me = len(os.listdir(f'/home/fairoos/naive_byaes/training_data/{dir}'))
+            file_me = len(os.listdir(f'{Dir_of_data}{dir}'))
             prob_me = file_me / total_files
             total_porbability = probability1 * prob_me
             pro = format(float(total_porbability), '.20f')
