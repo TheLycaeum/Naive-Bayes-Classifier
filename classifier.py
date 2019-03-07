@@ -21,9 +21,9 @@ def words_in_a_folder(path):
     cont_list = stop_word(cont_list)
     return cont_list
 
-def possible_words():
+def possible_words(Dir_of_data = '/home/fairoos/naive_byaes/training_data/'):
     """to count all possible words in training data"""
-    Dir_of_data = '/home/fairoos/naive_byaes/training_data/'
+    #Dir_of_data = '/home/fairoos/naive_byaes/training_data/'
     list_words = []
     for dir in os.listdir(Dir_of_data):
         path = (f"/home/fairoos/naive_byaes/training_data/{dir}")
