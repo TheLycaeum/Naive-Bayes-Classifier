@@ -58,7 +58,7 @@ def stop_word(input_words):
 #     lemmatized_output = [lemmatizer.lemmatize(w) for w in word_list]
 #     return lemmatized_output
 
-def name(cont_list):
+def probability_dict(cont_list):
     Dir_of_data = '/home/fairoos/naive_byaes/training_data/'
     x = {}
     for dir in os.listdir(Dir_of_data):
@@ -128,7 +128,7 @@ def probability():
         #cont_list = lammatize(cont_list)
         cont_list = list( dict.fromkeys(cont_list)) #remove repeted words
         cont_list = stop_word(cont_list)
-        x = name(cont_list)
+        x = probability_dict(cont_list)
         prob_list.append(percent_calculator(x))
         print("=== " * 34)
     return prob_list
