@@ -15,3 +15,7 @@ def test_stop_word():
 
 def test_probability_dict():
     assert classifier.probability_dict(['game', 'match'], Dir_of_data = '/home/fairoos/naive_byaes/pytest_data/training_data/') == {'sports data': 9.111761218400412e-07, 'non_sports data': 3.038169126368391e-07}
+
+def test_percent_calculator():
+    assert classifier.percent_calculator({'sports data': 9.111761218400412e-07, 'non_sports data': 3.038169126368391e-07}) == {'sports data': 74.99434943117606, 'non_sports data': 25.005650568823928}
+
