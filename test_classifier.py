@@ -13,6 +13,5 @@ def test_possible_words():
 def test_stop_word():
     assert classifier.stop_word(['the', 'monkey', 'is', 'not', 'a', 'cat']) == ['monkey', 'cat']
 
-# def test_probability_word():
-#     word = 'a'
-#     assert classifier.probability_word(['a', 'b', 'd', 'a']) == 2/4
+def test_probability_dict():
+    assert classifier.probability_dict(['game', 'match'], Dir_of_data = '/home/fairoos/naive_byaes/pytest_data/training_data/') == {'sports data': 9.111761218400412e-07, 'non_sports data': 3.038169126368391e-07}
