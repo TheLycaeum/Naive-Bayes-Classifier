@@ -111,9 +111,8 @@ def percent_calculator(x):
     return perce
     
     
-def probability():
+def probability(path = '/home/fairoos/naive_byaes/testing_data'):
     """ find the probability of testing data up on trained data"""
-    path = '/home/fairoos/naive_byaes/testing_data'
     prob_list = list()
     for filename in os.listdir(path):
         print(filename)
