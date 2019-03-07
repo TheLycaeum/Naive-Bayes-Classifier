@@ -8,7 +8,10 @@ def test_words_in_a_folder():
     assert classifier.words_in_a_folder(path1) == ['close', 'election', 'election']
 
 def test_possible_words():
-    assert classifier.possible_words(Dir_of_data = '/home/fairoos/naive_byaes/pytest_data/training_data/') == 7 
+    assert classifier.possible_words(Dir_of_data = '/home/fairoos/naive_byaes/pytest_data/training_data/') == 7
+
+def test_stop_word():
+    assert classifier.stop_word(['the', 'monkey', 'is', 'not', 'a', 'cat']) == ['monkey', 'cat']
 
 # def test_probability_word():
 #     word = 'a'
