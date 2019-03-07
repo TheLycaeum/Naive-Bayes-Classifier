@@ -7,8 +7,8 @@ def test_words_in_a_folder():
     path1 = '/home/fairoos/naive_byaes/pytest_data/training_data/non_sports lyrics'
     assert classifier.words_in_a_folder(path1) == ['close', 'election', 'election']
 
-# def test_possible_words:
-#     assert classifier.possible_words(['hello', 'hi', 'good']) == 3 
+def test_possible_words:
+    assert classifier.possible_words(['hello', 'hi', 'good']) == 3 
 
 # def test_probability_word():
 #     word = 'a'
