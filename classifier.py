@@ -26,17 +26,17 @@ def possible_words(Dir_of_data = '/home/fairoos/naive_byaes/training_data/'):
     #Dir_of_data = '/home/fairoos/naive_byaes/training_data/'
     list_words = []
     for dir in os.listdir(Dir_of_data):
-        path = (f"/home/fairoos/naive_byaes/training_data/{dir}")
+        path = (f"{Dir_of_data}{dir}")
         list_words.extend(words_in_a_folder(path)) # combain lists
         list_words = list(dict.fromkeys(list_words)) # rm duplicates from List:
         list_words = stop_word(list_words)
     count = len(list_words)
     return count
 
-def count_files():
+def count_files(list_dir = os.listdir('/home/fairoos/naive_byaes/training_data')):
     """coun files in a directory"""
     count = 0
-    for dir in os.listdir('/home/fairoos/naive_byaes/training_data'):
+    for dir in list_dir:
         count += len(os.listdir(f"/home/fairoos/naive_byaes/training_data/{dir}"))
     return count
 
