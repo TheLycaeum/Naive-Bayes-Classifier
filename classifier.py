@@ -110,7 +110,7 @@ def percent_calculator(x):
     return perce
     
     
-def probability(test_data):
+def probability(test_data, train_data):
     """ find the probability of testing data up on trained data"""
     prob_list = list()
     for filename in os.listdir(test_data):
