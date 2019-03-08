@@ -4,8 +4,9 @@ import nltk
 #nltk.download('wordnet')
 #nltk.download('stopwords')
 
-train_data = '/home/fairoos/naive_byaes/training_data/'
-test_data = '/home/fairoos/naive_byaes/testing_data'
+
+train_data = 'training_data/'
+test_data = 'testing_data'
 
 def words_in_a_folder(path):
     """Total number of words in a folder"""

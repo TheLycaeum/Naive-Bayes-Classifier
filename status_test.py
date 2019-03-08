@@ -1,7 +1,7 @@
 import classifier
 import os
-test_data = '/home/fairoos/naive_byaes/testing_data'
-train_data = '/home/fairoos/naive_byaes/training_data/'
+test_data = 'testing_data'
+train_data = 'training_data/'
 
 def name_file(file_names = os.listdir(test_data)):
     file_name_list = []
