@@ -3,9 +3,9 @@ import os
 test_data = '/home/fairoos/naive_byaes/testing_data'
 train_data = '/home/fairoos/naive_byaes/training_data/'
 
-def name_file():
+def name_file(file_names = os.listdir(test_data)):
     file_name_list = []
-    for filename in os.listdir(test_data):
+    for filename in file_names:
         file_name_list.append(filename)
     return file_name_list
 dictr =  classifier.probability(test_data, train_data)
