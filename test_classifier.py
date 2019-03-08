@@ -1,6 +1,7 @@
 import classifier
 #import pytest
 import status_test
+import os
 
 train_data = '/home/fairoos/naive_byaes/pytest_data/training_data/'
 test_data = '/home/fairoos/naive_byaes/pytest_data/testing_data'
@@ -26,8 +27,8 @@ def test_percent_calculator():
 def test_probability():
     assert classifier.probability(test_data, train_data) == [{'non_sports data': 48.275862068965516, 'sports data': 51.72413793103448}, {'non_sports data': 31.818181818181824, 'sports data': 68.18181818181819}]
 
-# def test_status_test():
-#     assert status_test.name_file(file_names = os.listdir(test_data)) == ['non_sports data', 'sports data']
+def test_status_test():
+    assert status_test.name_file(file_names = os.listdir(test_data)) == ['non_sports data', 'sports data']
 
-#def test_highest():
-#assert status_test.highest([{'non_sports data': 48.275862068965516, 'sports data': 51.72413793103448}, {'non_sports data': 31.818181818181824, 'sports data': 68.18181818181819}]) == ['sports data', 'sports data']
+def test_highest():
+    assert status_test.highest([{'non_sports data': 48.275862068965516, 'sports data': 51.72413793103448}, {'non_sports data': 31.818181818181824, 'sports data': 68.18181818181819}]) == ['sports data', 'sports data']
