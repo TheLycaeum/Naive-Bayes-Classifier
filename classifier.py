@@ -27,7 +27,7 @@ def possible_words(train_data):
     """to count all possible words in training data"""
     list_words = []
     for dir in os.listdir(train_data):
-        path = (f"{train_data}{dir}")
+        path = ("{}{}".format(train_data, dir))
         list_words.extend(words_in_a_folder(path)) # combain lists
         list_words = list(dict.fromkeys(list_words)) # rm duplicates from List:
         list_words = stop_word(list_words)
@@ -38,7 +38,7 @@ def count_files(list_dir = os.listdir(train_data)):
     """coun files in a directory"""
     count = 0
     for dir in list_dir:
-        count += len(os.listdir(f"{train_data}{dir}"))
+        count += len(os.listdir("{}{}".format(train_data, dir)))
     return count
 
 def stop_word(input_words):
@@ -62,7 +62,7 @@ def probability_dict(cont_list, train_data):
     x = {}
     for dir in os.listdir(train_data):
         #print(dir)
-        words =  words_in_a_folder(f'{train_data}{dir}')
+        words =  words_in_a_folder('{}{}'.format(train_data,dir))
         b =[]
         for element in cont_list:
             count = 0
@@ -78,7 +78,7 @@ def probability_dict(cont_list, train_data):
         for d in c:
             probability1 = probability * d
             total_files = count_files()
-            file_me = len(os.listdir(f'{train_data}{dir}'))
+            file_me = len(os.listdir('{}{}'.format(train_data, dir)))
             prob_me = file_me / total_files
             total_porbability = probability1 * prob_me
             pro = format(float(total_porbability), '.20f')
@@ -104,7 +104,7 @@ def percent_calculator(x):
             percentage = 0
     perce = dict()
     for key, perc in zip(key_list, perc_list):
-        print(f"{key} =  {perc} %.")
+        print("{} =  {} %.".format(key, perc))
         print()
         perce.update({key:perc})
     return perce
