@@ -24,7 +24,10 @@ def test_percent_calculator():
     assert classifier.percent_calculator({'sports data': 9.111761218400412e-07, 'non_sports data': 3.038169126368391e-07}) == {'sports data': 74.99434943117606, 'non_sports data': 25.005650568823928}
 
 def test_probability():
-    assert classifier.probability(test_data, train_data) == [{'non_sports data': 48.27586206896553, 'sports data': 51.72413793103448}, {'non_sports data': 31.818181818181824, 'sports data': 68.18181818181816}]
+    assert classifier.probability(test_data, train_data) == [{'non_sports data': 48.275862068965516, 'sports data': 51.72413793103448}, {'non_sports data': 31.818181818181824, 'sports data': 68.18181818181819}]
 
 # def test_status_test():
 #     assert status_test.name_file(file_names = os.listdir(test_data)) == ['non_sports data', 'sports data']
+
+#def test_highest():
+#assert status_test.highest([{'non_sports data': 48.275862068965516, 'sports data': 51.72413793103448}, {'non_sports data': 31.818181818181824, 'sports data': 68.18181818181819}]) == ['sports data', 'sports data']
