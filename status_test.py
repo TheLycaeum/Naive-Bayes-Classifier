@@ -37,13 +37,13 @@ def final_stat():
             sucess += 1
         else:
             feild += 1
-    print(f"Your model predict {sucess} sucess and {feild} feil")
+    print("Your model predict {} sucess and {} feil".format(sucess, feild))
     print()
     sucess_perc = (sucess/lenth)* 100
-    print(f"Your system is {sucess_perc} % accurate")
+    print("Your system is {} % accurate".format(sucess_perc))
     stars = (int(sucess_perc/10)*'⭐ ')
     print()
-    print(f"Your rating is {stars}")
+    print("Your rating is {}".format(stars))
     print()
     print("💖💖 ⮘⮘Thanks for use me⮚⮚ 💖💖")
     print()
